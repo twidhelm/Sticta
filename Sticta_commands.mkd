@@ -1,0 +1,17 @@
+-----------------------------------------------------------------
+**Commands used to filter out Nostoc reads from the MiSeq runs**
+-----------------------------------------------------------------
+-------------
+*S. limbata*
+-------------
+~~~
+twidhelm@vortex:~/Lichen/sequences/limbata/bowtie_lim_Nostoc_filter$ ~/programs/bowtie2-2.2.5/bowtie2 -x Nostoc_all_built -1 ../trimmed_sequences/Trimmomatic/lim_R1.fastq -2 ../trimmed_sequences/Trimmomatic/lim_R2.fastq --fr -I 100 -X 2000 --un-conc unaligned_lim --al-conc aligned_lim -S lim_bowtie.sam 1> bowtie.out 2> bowtie.err
+~~~
+
+----------------
+*S. fuliginosa*
+----------------
+~~~
+twidhelm@vortex:~/Lichen/sequences/fuliginosa/bowtie_ful_Nostoc_filter$ ~/programs/bowtie2-2.2.5/bowtie2 -x Nostoc_all_built -1 ../trimmed_sequences/Trimmomatic/Setting3/ful_1P_3.fastq -2 ../trimmed_sequences/Trimmomatic/Setting3/ful_2P_3.fastq --fr -I 100 -X 2000 --un-conc unaligned_ful --al-conc aligned_ful -S ful_bowtie.sam 1> bowtie.out 2> bowtie.err
+~~~
+------------------------------------------------------------------
