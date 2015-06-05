@@ -1,17 +1,69 @@
 -----------------------------------------------------------------
-**Commands used to filter out Nostoc reads from the MiSeq runs**
------------------------------------------------------------------
+#**Commands used to filter out Nostoc reads from the MiSeq runs**
+
 -------------
 *S. limbata*
 -------------
 ~~~
 twidhelm@vortex:~/Lichen/sequences/limbata/bowtie_lim_Nostoc_filter$ ~/programs/bowtie2-2.2.5/bowtie2 -x Nostoc_all_built -1 ../trimmed_sequences/Trimmomatic/lim_R1.fastq -2 ../trimmed_sequences/Trimmomatic/lim_R2.fastq --fr -I 100 -X 2000 --un-conc unaligned_lim --al-conc aligned_lim -S lim_bowtie.sam 1> bowtie.out 2> bowtie.err
 ~~~
-
+~~~
+10900908 reads; of these:
+  10900908 (100.00%) were paired; of these:
+    9792957 (89.84%) aligned concordantly 0 times
+    1088216 (9.98%) aligned concordantly exactly 1 time
+    19735 (0.18%) aligned concordantly >1 times
+    ----
+    9792957 pairs aligned concordantly 0 times; of these:
+      5429 (0.06%) aligned discordantly 1 time
+    ----
+    9787528 pairs aligned 0 times concordantly or discordantly; of these:
+      19575056 mates make up the pairs; of these:
+        18741753 (95.74%) aligned 0 times
+        809155 (4.13%) aligned exactly 1 time
+        24148 (0.12%) aligned >1 times
+14.04% overall alignment rate
+~~~
 ----------------
 *S. fuliginosa*
 ----------------
 ~~~
 twidhelm@vortex:~/Lichen/sequences/fuliginosa/bowtie_ful_Nostoc_filter$ ~/programs/bowtie2-2.2.5/bowtie2 -x Nostoc_all_built -1 ../trimmed_sequences/Trimmomatic/Setting3/ful_1P_3.fastq -2 ../trimmed_sequences/Trimmomatic/Setting3/ful_2P_3.fastq --fr -I 100 -X 2000 --un-conc unaligned_ful --al-conc aligned_ful -S ful_bowtie.sam 1> bowtie.out 2> bowtie.err
 ~~~
+~~~
+8027817 reads; of these:
+  8027817 (100.00%) were paired; of these:
+    7019950 (87.45%) aligned concordantly 0 times
+    989929 (12.33%) aligned concordantly exactly 1 time
+    17938 (0.22%) aligned concordantly >1 times
+    ----
+    7019950 pairs aligned concordantly 0 times; of these:
+      6315 (0.09%) aligned discordantly 1 time
+    ----
+    7013635 pairs aligned 0 times concordantly or discordantly; of these:
+      14027270 mates make up the pairs; of these:
+        13233118 (94.34%) aligned 0 times
+        770263 (5.49%) aligned exactly 1 time
+        23889 (0.17%) aligned >1 times
+17.58% overall alignment rate
+~~~
 ------------------------------------------------------------------
+###Changed the names of the output files.
+
+*S. limbata*
+-------------
+~~~
+limbata_Nostoc_filtered1.fastq
+limbata_Nostoc_filtered2.fastq
+Nostoc_aligned_lim1.fastq
+Nostoc_aligned_lim2.fastq
+~~~
+
+*S. fuliginosa*
+----------------
+~~~
+fuliginosa_Nostoc_filtered1.fastq
+fuliginosa_Nostoc_filtered2.fastq
+Nostoc_aligned_ful1.fastq
+Nostoc_aligned_ful2.fastq
+~~~
