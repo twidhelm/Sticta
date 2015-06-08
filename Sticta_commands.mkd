@@ -1,3 +1,10 @@
+#Trimmomatic
+
+Example of the command used to trim the MiSeq reads.
+~~~
+twidhelm@vortex:~/Lichen/sequences/fuliginosa$ java -jar ~/programs/Trimmomatic-0.33/trimmomatic-0.33.jar PE Sfuliginosa_S1_L001_R1_001.fastq Sfuliginosa_S1_L001_R2_001.fastq ~/Lichen/sequences/fuliginosa/Trimmomatic/ful_1P_3.fastq ~/Lichen/sequences/fuliginosa/Trimmomatic/ful_1U_3.fastq ~/Lichen/sequences/fuliginosa/Trimmomatic/ful_2P_3.fastq ~/Lichen/sequences/fuliginosa/Trimmomatic/ful_2U_3.fastq LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+~~~
+
 -----------------------------------------------------------------
 #**Commands used to filter out Nostoc reads from the MiSeq runs**
 
@@ -66,4 +73,60 @@ fuliginosa_Nostoc_filtered1.fastq
 fuliginosa_Nostoc_filtered2.fastq
 Nostoc_aligned_ful1.fastq
 Nostoc_aligned_ful2.fastq
+~~~
+---------------------------------------------------
+#**Filtering previously Nostoc-filtered MiSeq reads by mapping to the combined *Peltigera membranacea* and *P. malacea* complete mitochondrial genomes FASTA file**
+
+*S. limbata*
+-------------
+~~~
+twidhelm@vortex:~/Lichen/sequences/limbata/bowtie_lim_Peltigera_mito_filter$ ~/programs/bowtie2-2.2.5/bowtie2 -x Pelt_comb_mito_genomes -1 ../bowtie_lim_Nostoc_filter/limbata_Nostoc_filtered1.fastq -2 ../bowtie_lim_Nostoc_filter/limbata_Nostoc_filtered2.fastq --fr -I 100 -X 2000 --un-conc unaligned_lim --al-conc aligned_lim -S lim_Peltigera_bowtie.sam 1> bowtie.out 2> bowtie.err
+~~~
+~~~
+9792957 reads; of these:
+  9792957 (100.00%) were paired; of these:
+    9790972 (99.98%) aligned concordantly 0 times
+    557 (0.01%) aligned concordantly exactly 1 time
+    1428 (0.01%) aligned concordantly >1 times
+    ----
+    9790972 pairs aligned concordantly 0 times; of these:
+      4 (0.00%) aligned discordantly 1 time
+    ----
+    9790968 pairs aligned 0 times concordantly or discordantly; of these:
+      19581936 mates make up the pairs; of these:
+        19572261 (99.95%) aligned 0 times
+        2007 (0.01%) aligned exactly 1 time
+        7668 (0.04%) aligned >1 times
+0.07% overall alignment rate
+~~~
+----------------------------------------------
+*S. fuliginosa*
+----------------
+~~~
+twidhelm@vortex:~/Lichen/sequences/fuliginosa/bowtie_ful_Peltigera_mito_filter$ ~/programs/bowtie2-2.2.5/bowtie2 -x Pelt_comb_mito_genomes -1 ../bowtie_ful_Nostoc_filter/fuliginosa_Nostoc_filtered1.fastq -2 ../bowtie_ful_Nostoc_filter/fuliginosa_Nostoc_filtered2.fastq --fr -I 100 -X 2000 --un-conc unaligned_lim --al-conc aligned_lim -S ful_Peltigera_bowtie.sam 1> bowtie.out 2> bowtie.err
+~~~
+~~~
+7019950 reads; of these:
+  7019950 (100.00%) were paired; of these:
+    7019151 (99.99%) aligned concordantly 0 times
+    106 (0.00%) aligned concordantly exactly 1 time
+    693 (0.01%) aligned concordantly >1 times
+    ----
+    7019151 pairs aligned concordantly 0 times; of these:
+      3 (0.00%) aligned discordantly 1 time
+    ----
+    7019148 pairs aligned 0 times concordantly or discordantly; of these:
+      14038296 mates make up the pairs; of these:
+        14032942 (99.96%) aligned 0 times
+        917 (0.01%) aligned exactly 1 time
+        4437 (0.03%) aligned >1 times
+0.05% overall alignment rate
+~~~
+-----------------------------------------------
+#SPAdes Assembly Commands
+-----------------------------------------------
+*S. fuliginosa*
+----------------
+~~~
+twidhelm@joey:~/sequences/fuliginosa/fuliginosa_Nostoc_filtered$ ~/programs/SPAdes-3.5.0-Linux/bin/spades.py -o ~/sequences/fuliginosa/fuliginosa_Nostoc_filtered/SPAdes/ --pe1-1 fuliginosa_Nostoc_filtered1.fastq --pe1-2 fuliginosa_Nostoc_filtered2.fastq -m 500 -t 3 -k 21 1>./SPAdes/spades_pe.out 2>./SPAdes/spades_pe.err
 ~~~
