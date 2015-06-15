@@ -1,0 +1,28 @@
+#MetaVelvet
+--------------------------------------------
+*Sticta fuliginosa*
+
+Assembly of metagenome. The reads were trimmed up with Trimmomatic. 
+~~~
+joey: ~/sequences/fuliginosa/Trimmomatic_reads
+    ful_P1_3.fastq
+    ful_P2_3.fastq
+~~~
+~~~
+$ ~/programs/velvet_1.2.10/velveth out-dir 51 -fastq -shortPaired ful_1P_3.fastq ful_2P_3.fastq
+~~~
+~~~
+$ ~/programs/velvet_1.2.10/velvetg out-dir -exp_cov auto -ins_length 260
+~~~
+------------------------------------------------
+*Sticta limbata*
+
+Assembly of metagenome. The reads were trimmed up with Trimmomatic. 
+~~~
+joey: ~/sequences/limbata/Trimmomatic_reads
+    lim_R1.fastq
+    lim_R2.fastq
+~~~
+~~~    
+$ ~/programs/velvet_1.2.10/velveth out-dir 51 -fastq -shortPaired lim_R1.fastq lim_R2.fastq
+~~~
