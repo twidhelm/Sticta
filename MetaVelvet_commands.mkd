@@ -26,3 +26,6 @@ joey: ~/sequences/limbata/Trimmomatic_reads
 ~~~    
 $ ~/programs/velvet_1.2.10/velveth out-dir 51 -fastq -shortPaired lim_R1.fastq lim_R2.fastq
 ~~~
+~~~
+~/programs/velvet_1.2.10/velvetg out-dir -exp_cov auto -ins_length 260
+~~~
